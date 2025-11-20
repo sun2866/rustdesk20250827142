@@ -56,7 +56,8 @@ lazy_static::lazy_static! {
     static ref STATUS: RwLock<Status> = RwLock::new(Status::load());
     static ref TRUSTED_DEVICES: RwLock<(Vec<TrustedDevice>, bool)> = Default::default();
     static ref ONLINE: Mutex<HashMap<String, i64>> = Default::default();
-    pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new("".to_owned());
+    //pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new("".to_owned());
+    pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(match option_env!("RENDEZVOUS_SERVER") {Some(key) if !key.is_empty() => key,_ => "",}.to_owned());
     pub static ref EXE_RENDEZVOUS_SERVER: RwLock<String> = Default::default();
     pub static ref APP_NAME: RwLock<String> = RwLock::new("RustDesk".to_owned());
     static ref KEY_PAIR: Mutex<Option<KeyPair>> = Default::default();
@@ -102,6 +103,7 @@ const CHARS: &[char] = &[
 
 pub const RENDEZVOUS_SERVERS: &[&str] = &["192.144.233.202"];//10.105.105.186"];
 pub const RS_PUB_KEY: &str = "qIKTvDQFlK+d79G5BOs5Zqimo31RANJWR6iH1sD0lHA=";//nt+C2nkI5bPdET5Yp5MeKwLHP1Fg+YgDKTkRAx2H9xA=";
+pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {Some(key) if !key.is_empty() => key,_ => PUBLIC_RS_PUB_KEY,};
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
 pub const RELAY_PORT: i32 = 21117;
