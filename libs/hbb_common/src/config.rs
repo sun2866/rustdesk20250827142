@@ -103,6 +103,7 @@ const CHARS: &[char] = &[
 
 pub const RENDEZVOUS_SERVERS: &[&str] = &["192.144.233.202"];//10.105.105.186"];
 //pub const RS_PUB_KEY: &str = "qIKTvDQFlK+d79G5BOs5Zqimo31RANJWR6iH1sD0lHA=";//nt+C2nkI5bPdET5Yp5MeKwLHP1Fg+YgDKTkRAx2H9xA=";
+pub const PUBLIC_RS_PUB_KEY: &str = "qIKTvDQFlK+d79G5BOs5Zqimo31RANJWR6iH1sD0lHA=";
 pub const RS_PUB_KEY: &str = match option_env!("RS_PUB_KEY") {Some(key) if !key.is_empty() => key,_ => PUBLIC_RS_PUB_KEY,};
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
